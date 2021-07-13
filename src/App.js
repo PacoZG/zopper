@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"; // { useEffect, useState }
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import Plan from "./components/Plan";
+import HomePage from "./components/HomePage";
+// import axios from "axios";
 
-function App() {
+const App = () => {
+  // const [posts, setPosts] = useState([]);
+  // useEffect(() => {
+  //   axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
+  //     setPosts(response.data);
+  //   });
+  // }, [setPosts]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-screen ">
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/home">
+            <HomePage />
+          </Route>
+          <Route path="/plans/basic">
+            <Plan plan="Basic" />
+          </Route>
+          <Route path="/plans/standard">
+            <Plan plan="Standard" />
+          </Route>
+          <Route path="/plans/premium">
+            <Plan plan="Premium" />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
